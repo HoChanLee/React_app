@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <p>Total Click: <span id="num">0</span></p>
+        <button id="btn">Click me</button>
+    </body>
+    <script>
+        let conuter = 0;
+        const button = document.getElementById('btn');
+        const num = document.getElementById('num');
+        function handleClick(){
+            conuter += 1;
+            return num.innerHTML=conuter;
+        };
+        button.addEventListener('click', handleClick);
+    </script>
+</html>
