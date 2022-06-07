@@ -9,14 +9,40 @@
     <script type="text/babel">
         const root = document.getElementById('root');
         function App() {
-            const [counter, setCounter] = React.useState(0);
-            const onClick = function (){
-                setCounter(counter + 1);
-            };
+            const [convert, setconvert] = React.useState(0);
+            const [flipped, setflipped] = React.useState(false);
+            const onChange = (event) => {
+                setconvert(event.target.value);
+            }
+            const onFlip = () => {
+                setflipped((current) => !current);
+                reset();
+            }
+            const reset = () => {
+                setconvert(0);
+            }
             return (
                 <div>
-                    <h3>Total Click: {counter}</h3>
-                    <button onClick={onClick}>click-me</button>
+                    <h1>Converter</h1>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input 
+                        id="minutes"
+                        type="number"
+                        value={flipped ? convert * 60 : convert}
+                        onChange={onChange}
+                        disabled={flipped}
+                    />
+                    <h4>you want to convert {convert}</h4>
+                    <label htmlFor="hours">Hours</label>
+                    <input 
+                        id="hours"
+                        type="number"
+                        value={!flipped ? Math.round(convert / 60) : convert}
+                        onChange={onChange}
+                        disabled={!flipped}
+                    />
+                    <button onClick={reset}>reset</button>
+                    <button onClick={onFlip}>Flip</button>
                 </div>
             );
         }
