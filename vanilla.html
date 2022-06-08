@@ -7,8 +7,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        const root = document.getElementById('root');
-        function App() {
+        function MinutesToHoure() {
             const [convert, setconvert] = React.useState(0);
             const [flipped, setflipped] = React.useState(false);
             const onChange = (event) => {
@@ -23,7 +22,6 @@
             }
             return (
                 <div>
-                    <h1>Converter</h1>
                     <label htmlFor="minutes">Minutes</label>
                     <input 
                         id="minutes"
@@ -46,6 +44,30 @@
                 </div>
             );
         }
+        function KmToMiles() {
+            return (<h3>KM 2 M</h3>)
+        }
+        function App() {
+            const [index, setIndex] = React.useState("int");
+            const onSelect = (event) => {
+                setIndex(event.target.value);
+            };
+            return(
+                <div>
+                    <h1>Converter</h1>
+                    <select value={index} onChange={onSelect}>
+                        <option value="int">Please select</option>
+                        <option value="0">Minutes & Hours</option>
+                        <option value="1">Km & Miles</option>
+                    </select>
+                    <hr />
+                    {index === "int" ? 'Please select' : null}
+                    {index === "0" ? <MinutesToHoure /> : null}
+                    {index === "1" ? <KmToMiles /> : null}
+                </div>
+            )
+        }
+        const root = document.getElementById('root');
         ReactDOM.render(<App/>, root);
     </script>
 </html>
